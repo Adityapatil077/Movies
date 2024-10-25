@@ -1,11 +1,19 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
 
 function Header() {
     const [searchTerm, setSearchTerm] = useState("");
+    const navigate = useNavigate(); // Hook to programmatically navigate
 
     const handleInputChange = (e) => {
-        setSearchTerm(e.target.value);
+        setSearchTerm(e.target.value.toLowerCase());
+    };
+
+    const handleSearch = (e) => {
+        e.preventDefault(); // Prevent default form submission
+        if (searchTerm) {
+            navigate(`/search/${searchTerm}`); // Use navigate to go to the search results page
+        }
     };
 
     return (
@@ -42,7 +50,7 @@ function Header() {
                             </Link>
                         </li>
                     </ul>
-                    <form className="d-flex ms-auto">
+                    <form className="d-flex ms-auto" onSubmit={handleSearch}>
                         <input
                             className="form-control me-2"
                             type="search"
@@ -50,9 +58,9 @@ function Header() {
                             aria-label="Search"
                             onChange={handleInputChange}
                         />
-                        <Link to={`/movie/${searchTerm}`} className="btn btn-outline-success" style={{ color: "lightgray" }}>
+                        <button type="submit" className="btn btn-outline-success" style={{ color: "lightgray" }}>
                             Search
-                        </Link>
+                        </button>
                     </form>
                 </div>
             </div>

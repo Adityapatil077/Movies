@@ -16,9 +16,9 @@ function App() {
           <Header/>
           <Routes >
               <Route index element={<HomePage/>}></Route>
-              <Route path="movie/:id" element={<MovieDetail/>}></Route>
-              <Route path="movies/:type" element={<MovieList/>}></Route>
-              <Route path="movies/:query" element={<SearchMovie/>}></Route>
+              <Route path="movie/:id" element={<MovieDetail/>}/>
+              <Route path="movies/:type" element={<MovieList/>}/>
+              <Route path="search/:query" element={<SearchMovie />}/>
               <Route path="/*" element={<ErrorPage/>}></Route>
           </Routes>
         </Router>
